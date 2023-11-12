@@ -10,6 +10,7 @@ import christmas.utils.Constants.ORDER_MENU_MESSAGE
 import christmas.utils.Constants.ORDER_MESSAGE
 import christmas.utils.Constants.PRE_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.START_MESSAGE
+import christmas.utils.Validators
 
 class OutputView {
     fun printAskDate() {
@@ -50,5 +51,13 @@ class OutputView {
 
     fun printEventBadge() {
         println(DECEMBER_EVENT_BADGE)
+    }
+
+    fun printInputDateError() {
+        println(Validators.DATE.message)
+    }
+
+    fun printInputMenuError() {
+        println(Validators.MENU.message)
     }
 }
