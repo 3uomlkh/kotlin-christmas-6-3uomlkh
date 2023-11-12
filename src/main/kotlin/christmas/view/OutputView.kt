@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.domain.Menu
 import christmas.domain.Order
 import christmas.utils.Constants.AFTER_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_AMOUNT_TOTAL_MESSAGE
@@ -7,6 +8,7 @@ import christmas.utils.Constants.BENEFIT_DETAILS_MESSAGE
 import christmas.utils.Constants.DATE_MESSAGE
 import christmas.utils.Constants.DECEMBER_EVENT_BADGE
 import christmas.utils.Constants.GIFT_MENU_MESSAGE
+import christmas.utils.Constants.NO_EVENT
 import christmas.utils.Constants.ORDER_MENU_MESSAGE
 import christmas.utils.Constants.ORDER_MESSAGE
 import christmas.utils.Constants.PRE_DISCOUNT_TOTAL_MESSAGE
@@ -32,6 +34,7 @@ class OutputView {
         for(index in menu.indices) {
             println("${menu[index].menu} ${menu[index].quantity}개")
         }
+        println()
     }
 
     fun printPreDiscountTotal(total: Int) {
@@ -41,8 +44,13 @@ class OutputView {
         println()
     }
 
-    fun printGiftMenu() {
+    fun printGiftMenu(gift: Boolean) {
         println(GIFT_MENU_MESSAGE)
+        if(gift) {
+            println("${Menu.CHAMPAGNE.dish} 1개")
+            return
+        }
+        println(NO_EVENT)
     }
 
     fun printBenefitDetails() {
