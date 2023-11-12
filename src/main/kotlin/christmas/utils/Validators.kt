@@ -3,6 +3,7 @@ package christmas.utils
 import christmas.domain.Menu
 import christmas.utils.Constants.COMMA
 import christmas.utils.Constants.HYPHEN
+import christmas.utils.Parser.dulicatedMenuParser
 import christmas.utils.Parser.inputParser
 import christmas.utils.Parser.menuParser
 import java.awt.SystemColor.menu
@@ -20,11 +21,11 @@ fun dateValidators(date: String): Int {
 
 fun menuValidators(order: String) {
 
-    validateMenuFormComma(order)
-    val parseOrder = inputParser(order)
+    val parseOrder = validateMenuFormComma(order)
+    validateMenuDulicate(parseOrder)
     validateMenuFormHypen(parseOrder)
-    val result = menuParser(parseOrder)
 
+    val result = menuParser(parseOrder)
     for (index in result.indices) {
         var menus = result[index].menu
         var quantities = result[index].quantity
@@ -47,20 +48,28 @@ fun validateMenuNumber(quantity: String) = require(quantity.toIntOrNull() is Int
 
 fun validateMenuQuantityRange(quantity: String) = require(quantity.toInt() in Validators.MENU.first..Validators.MENU.last)
 
-fun validateMenuFormComma(order: String) = require(!isValidMenuFormatComma(order))
+fun validateMenuDulicate(order: List<String>) {
+    val result = dulicatedMenuParser(order)
+    require(result.size == result.distinct().size)
+}
+
+fun validateMenuFormComma(order: String): List<String> {
+    require(isValidMenuFormatComma(order))
+    return inputParser(order)
+}
 
 fun validateMenuFormHypen(order: List<String>) {
     for (menu in order) {
-        require(!isValidMenuFormatHypen(menu))
+        require(isValidMenuFormatHypen(menu))
     }
 }
 
-fun isValidMenuFormatHypen(menu: String): Boolean {
+fun isValidMenuFormatHypen(input: String): Boolean {
     val regex = Regex("^[^,]+-\\d+$")
-    return regex.matches(menu)
+    return regex.matches(input)
 }
 
-fun isValidMenuFormatComma(menu: String): Boolean {
+fun isValidMenuFormatComma(input: String): Boolean {
     val regex = Regex("^[^,]+(,[^,]+)*$")
-    return regex.matches(menu)
+    return regex.matches(input)
 }

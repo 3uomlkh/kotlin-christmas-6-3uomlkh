@@ -16,4 +16,13 @@ object Parser {
         }
         return result
     }
+
+    fun dulicatedMenuParser(menus: List<String>): List<String> {
+        val result = menus.flatMap {
+            val (menu) = it.split(HYPHEN)
+            listOf(menu)
+        }
+        println(result)
+        return result
+    }
 }
