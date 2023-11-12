@@ -1,5 +1,6 @@
 package christmas.view
 
+import christmas.domain.Order
 import christmas.utils.Constants.AFTER_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_AMOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_DETAILS_MESSAGE
@@ -10,7 +11,6 @@ import christmas.utils.Constants.ORDER_MENU_MESSAGE
 import christmas.utils.Constants.ORDER_MESSAGE
 import christmas.utils.Constants.PRE_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.START_MESSAGE
-import christmas.utils.Validators
 
 class OutputView {
     fun printAskDate() {
@@ -25,8 +25,11 @@ class OutputView {
         println(String.format(START_MESSAGE, input))
     }
 
-    fun printMenu() {
+    fun printMenu(menu: List<Order>) {
         println(ORDER_MENU_MESSAGE)
+        for(index in menu.indices) {
+            println("${menu[index].menu} ${menu[index].quantity}개")
+        }
     }
 
     fun printPreDiscountTotal() {

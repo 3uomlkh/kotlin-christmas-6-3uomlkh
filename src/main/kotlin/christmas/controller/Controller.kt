@@ -1,5 +1,6 @@
 package christmas.controller
 
+import christmas.domain.Order
 import christmas.utils.dateValidators
 import christmas.utils.menuValidators
 import christmas.view.InputView
@@ -11,6 +12,7 @@ class Controller(
 ) {
     fun start() {
         var date : Int
+        var menu : List<Order>
 
         outputView.printAskDate()
         while (true) {
@@ -25,7 +27,7 @@ class Controller(
         outputView.printAskMenu()
         while (true) {
             try {
-                menuValidators(inputView.readDate())
+                menu = menuValidators(inputView.readDate())
                 break
             } catch (error: IllegalArgumentException) {
                 outputView.printInputMenuError(error.message)
@@ -33,5 +35,6 @@ class Controller(
         }
 
         outputView.printStartMessage(date)
+        outputView.printMenu(menu)
     }
 }

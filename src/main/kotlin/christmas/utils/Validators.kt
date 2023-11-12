@@ -14,14 +14,13 @@ enum class Validators(val message: String, val first: Int, val last: Int) {
     DRINK("[ERROR] 음료만 주문할 수 없습니다.",0,0)
 }
 
-
 fun dateValidators(date: String): Int {
     validateNumber(date)
     validateRange(date)
     return date.toInt()
 }
 
-fun menuValidators(order: String) {
+fun menuValidators(order: String): List<Order> {
     var total = 0
     val parseOrder = validateMenuFormComma(order)
     validateMenuDulicate(parseOrder)
@@ -36,6 +35,7 @@ fun menuValidators(order: String) {
         total += quantity.toInt()
     }
     validateOrderTotal(total)
+    return result
 }
 
 fun validateNumber(date: String) = require(date.toIntOrNull() is Int) {Validators.DATE.message}
@@ -81,10 +81,7 @@ fun validateOrderDrink(order: List<String>) {
             || result.contains(Menu.ICE_CREAM.dish)) {Validators.DRINK.message}
 }
 
-fun validateOrderTotal(total: Int) {
-    println(total)
-    require(total <= Validators.TOTAL.last) { Validators.TOTAL.message }
-}
+fun validateOrderTotal(total: Int) = require(total <= Validators.TOTAL.last) { Validators.TOTAL.message }
 
 fun isValidMenuFormatHypen(input: String): Boolean {
     val regex = Regex("^[^,]+-\\d+$")

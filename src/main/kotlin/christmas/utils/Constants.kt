@@ -15,7 +15,7 @@ object Constants {
     const val DATE_MESSAGE = "안녕하세요! 우테코 식당 ${MONTH_TWELVE}월 이벤트 플래너입니다.\n" +
             "${MONTH_TWELVE}월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"
     const val ORDER_MESSAGE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)"
-    const val START_MESSAGE = "${MONTH_TWELVE}월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"
+    const val START_MESSAGE = "${MONTH_TWELVE}월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n"
     const val ORDER_MENU_MESSAGE = "<주문 메뉴>"
     const val PRE_DISCOUNT_TOTAL_MESSAGE = "<할인 전 총주문 금액>"
     const val GIFT_MENU_MESSAGE = "<증정 메뉴>"
