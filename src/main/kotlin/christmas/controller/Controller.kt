@@ -1,6 +1,7 @@
 package christmas.controller
 
 import christmas.domain.Order
+import christmas.domain.totalPrice
 import christmas.utils.dateValidators
 import christmas.utils.menuValidators
 import christmas.view.InputView
@@ -36,5 +37,7 @@ class Controller(
 
         outputView.printStartMessage(date)
         outputView.printMenu(menu)
+        val total = totalPrice(menu)
+        outputView.printPreDiscountTotal(total)
     }
 }

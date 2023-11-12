@@ -1,5 +1,7 @@
 package christmas.domain
 
+import christmas.utils.Constants.HUNDRED_TWENTY_THOUSAND
+
 enum class Menu(val type: String, val dish: String, val price: Int) {
     SOUP("애피타이저","양송이수프",6_000),
     TAPAS("애피타이저", "타파스", 5_500),
@@ -14,3 +16,26 @@ enum class Menu(val type: String, val dish: String, val price: Int) {
     RED_WINE("음료", "레드와인", 60_000),
     CHAMPAGNE("음료", "샴페인", 25_000)
 }
+
+fun totalPrice(menu: List<Order>): Int {
+    var total = 0
+    for (index in menu.indices) {
+        when(menu[index].menu) {
+            Menu.SOUP.dish -> total += Menu.SOUP.price
+            Menu.TAPAS.dish -> total += Menu.TAPAS.price
+            Menu.SALAD.dish -> total += Menu.SALAD.price
+            Menu.T_BONE.dish -> total += Menu.T_BONE.price
+            Menu.BBQ.dish -> total += Menu.BBQ.price
+            Menu.SEAFOOD_PASTA.dish -> total += Menu.SEAFOOD_PASTA.price
+            Menu.CHRISTMAS_PASTA.dish -> total += Menu.CHRISTMAS_PASTA.price
+            Menu.CHOCOLATE_CAKE.dish -> total += Menu.CHOCOLATE_CAKE.price
+            Menu.ICE_CREAM.dish -> total += Menu.ICE_CREAM.price
+            Menu.ZERO_COKE.dish -> total += Menu.ZERO_COKE.price
+            Menu.RED_WINE.dish -> total += Menu.RED_WINE.price
+            Menu.CHAMPAGNE.dish -> total += Menu.CHAMPAGNE.price
+        }
+    }
+    return total
+}
+
+fun giftMenu(total: Int): Boolean = total >= HUNDRED_TWENTY_THOUSAND

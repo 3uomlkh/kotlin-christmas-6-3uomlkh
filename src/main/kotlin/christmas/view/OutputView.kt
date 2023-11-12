@@ -11,6 +11,8 @@ import christmas.utils.Constants.ORDER_MENU_MESSAGE
 import christmas.utils.Constants.ORDER_MESSAGE
 import christmas.utils.Constants.PRE_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.START_MESSAGE
+import java.text.NumberFormat
+import java.util.Locale
 
 class OutputView {
     fun printAskDate() {
@@ -32,8 +34,11 @@ class OutputView {
         }
     }
 
-    fun printPreDiscountTotal() {
+    fun printPreDiscountTotal(total: Int) {
         println(PRE_DISCOUNT_TOTAL_MESSAGE)
+        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
+        println(numberFormat.format(total))
+        println()
     }
 
     fun printGiftMenu() {
