@@ -1,8 +1,6 @@
 package christmas.utils
 
 object Constants {
-    const val FIRST_DAY_OF_MONTH = 1
-    const val LAST_DAY_OF_MONTH = 31
     const val YEAR = 2_023
     const val WEEK = 7
     const val CHRISTMAS = 25
