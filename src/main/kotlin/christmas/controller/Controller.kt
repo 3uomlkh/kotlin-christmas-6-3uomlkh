@@ -2,7 +2,6 @@ package christmas.controller
 
 import christmas.utils.dateValidators
 import christmas.utils.menuValidators
-import christmas.utils.validateMenuDulicate
 import christmas.view.InputView
 import christmas.view.OutputView
 
@@ -18,8 +17,8 @@ class Controller(
             try {
                 date = dateValidators(inputView.readDate())
                 break
-            } catch (e: IllegalArgumentException) {
-                outputView.printInputDateError()
+            } catch (error: IllegalArgumentException) {
+                outputView.printInputDateError(error.message)
             }
         }
 
@@ -28,8 +27,8 @@ class Controller(
             try {
                 menuValidators(inputView.readDate())
                 break
-            } catch (e: IllegalArgumentException) {
-                outputView.printInputMenuError()
+            } catch (error: IllegalArgumentException) {
+                outputView.printInputMenuError(error.message)
             }
         }
 

@@ -9,7 +9,7 @@ object Parser {
         return input.split(COMMA)
     }
 
-    fun menuParser(menus: List<String>): List<Order> {
+    fun menuAndQuantityParser(menus: List<String>): List<Order> {
         val result = menus.map {
             val (menu, quantity) = it.split(HYPHEN)
             Order(menu, quantity)
@@ -17,12 +17,11 @@ object Parser {
         return result
     }
 
-    fun dulicatedMenuParser(menus: List<String>): List<String> {
+    fun menuParser(menus: List<String>): List<String> {
         val result = menus.flatMap {
             val (menu) = it.split(HYPHEN)
             listOf(menu)
         }
-        println(result)
         return result
     }
 }

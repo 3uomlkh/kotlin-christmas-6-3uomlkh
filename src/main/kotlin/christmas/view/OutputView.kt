@@ -53,11 +53,11 @@ class OutputView {
         println(DECEMBER_EVENT_BADGE)
     }
 
-    fun printInputDateError() {
-        println(Validators.DATE.message)
+    fun printInputDateError(error: String?) {
+        println(error)
     }
 
-    fun printInputMenuError() {
-        println(Validators.MENU.message)
+    fun printInputMenuError(error: String?) {
+        println(error)
     }
 }
