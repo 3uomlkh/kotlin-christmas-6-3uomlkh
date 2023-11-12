@@ -21,8 +21,8 @@ class OutputView {
         println(ORDER_MESSAGE)
     }
 
-    fun printStartMessage() {
-        println(START_MESSAGE)
+    fun printStartMessage(input: Int) {
+        println(String.format(START_MESSAGE, input))
     }
 
     fun printMenu() {
