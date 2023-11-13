@@ -23,8 +23,7 @@ fun dateValidators(date: String): Int {
 fun menuValidators(order: String): List<Order> {
     var total = 0
     val parseOrder = validateMenuFormComma(order)
-    validateMenuDulicate(parseOrder)
-    validateOrderDrink(parseOrder)
+    validateMenuDuplicate(parseOrder)
     val result = validateMenuFormHypen(parseOrder)
     for (index in result.indices) {
         val menu = result[index].menu
@@ -34,6 +33,7 @@ fun menuValidators(order: String): List<Order> {
         validateMenuQuantityRange(quantity)
         total += quantity.toInt()
     }
+    validateOrderDrink(parseOrder)
     validateOrderTotal(total)
     return result
 }
@@ -44,14 +44,14 @@ fun validateRange(date: String) = require(date.toInt() in Validators.DATE.first.
 
 fun validateMenuSelection(menu: String) {
     val allDishes: List<String> = enumValues<Menu>().map { it.dish }
-    require(allDishes.contains(menu)) {}
+    require(allDishes.contains(menu)) {Validators.MENU.message}
 }
 
 fun validateMenuNumber(quantity: String) = require(quantity.toIntOrNull() is Int) {Validators.DATE.message}
 
 fun validateMenuQuantityRange(quantity: String) = require(quantity.toInt() in Validators.MENU.first..Validators.MENU.last) {Validators.MENU.message}
 
-fun validateMenuDulicate(order: List<String>) {
+fun validateMenuDuplicate(order: List<String>) {
     val result = menuParser(order)
     require(result.size == result.distinct().size) {Validators.MENU.message}
 }

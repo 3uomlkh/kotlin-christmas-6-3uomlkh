@@ -8,6 +8,7 @@ object Constants {
     const val THOUSAND = 1_000
     const val HUNDRED_TWENTY_THOUSAND = 120_000
     const val CHAMPAGNE_PRICE = 25_000
+    const val EVENT_APPLICABLE_AMOUNT = 10_000
 
     const val HYPHEN = "-"
     const val COMMA = ","
@@ -27,4 +28,5 @@ object Constants {
     const val EVENT_BADGE_TREE = "트리"
     const val EVENT_BADGE_SANTA = "산타"
     const val NO_EVENT = "없음"
+    const val NO_EVENT_AMOUNT = "0원"
 }

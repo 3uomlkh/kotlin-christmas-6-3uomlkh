@@ -39,8 +39,7 @@ class OutputView {
 
     fun printPreDiscountTotal(total: Int) {
         println(PRE_DISCOUNT_TOTAL_MESSAGE)
-        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
-        println(numberFormat.format(total))
+        println(numberFormatting(total))
         println()
     }
 
@@ -51,22 +50,31 @@ class OutputView {
             return
         }
         println(NO_EVENT)
+        println()
     }
 
-    fun printBenefitDetails() {
+    fun printBenefitDetails(input: String) {
         println(BENEFIT_DETAILS_MESSAGE)
+        println(input)
+        println()
     }
 
-    fun printBenefitAmountTotal() {
+    fun printBenefitAmountTotal(input: String) {
         println(BENEFIT_AMOUNT_TOTAL_MESSAGE)
+        println(input)
+        println()
     }
 
-    fun printAfterDiscountTotal() {
+    fun printAfterDiscountTotal(total: Int) {
         println(AFTER_DISCOUNT_TOTAL_MESSAGE)
+        println(numberFormatting(total))
+        println()
     }
 
-    fun printEventBadge() {
+    fun printEventBadge(input: String) {
         println(DECEMBER_EVENT_BADGE)
+        println(input)
+        println()
     }
 
     fun printInputDateError(error: String?) {
@@ -75,5 +83,10 @@ class OutputView {
 
     fun printInputMenuError(error: String?) {
         println(error)
+    }
+
+    private fun numberFormatting(input: Int): String {
+        val numberFormat = NumberFormat.getNumberInstance(Locale.getDefault())
+        return numberFormat.format(input)
     }
 }
