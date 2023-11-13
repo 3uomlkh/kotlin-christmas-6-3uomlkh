@@ -1,6 +1,7 @@
 package christmas.controller
 
 import christmas.domain.Order
+import christmas.domain.allEvent
 import christmas.domain.checkGiftMenu
 import christmas.domain.evenStart
 import christmas.domain.totalPrice
@@ -48,7 +49,7 @@ class Controller(
         outputView.printGiftMenu(checkGiftMenu(total))
 
         if (isEventApplicable(total)) {
-            evenStart(menu,date,total)
+            println(allEvent(evenStart(menu,date,total)))
         }
     }
 }
