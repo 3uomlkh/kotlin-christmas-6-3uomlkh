@@ -1,5 +1,7 @@
 package christmas.domain
 
+import christmas.utils.Constants.MAX_ORDER_PRICE
+
 enum class Badge(val type: String, val price: Int) {
     STAR("별", 5_000),
     TREE("트리", 10_000),
@@ -7,10 +9,10 @@ enum class Badge(val type: String, val price: Int) {
 }
 
 fun eventBadge(discount: Int): String {
-    return when {
-        discount >= Badge.STAR.price -> Badge.STAR.type
-        discount >= Badge.TREE.price -> Badge.TREE.type
-        discount >= Badge.SANTA.price -> Badge.SANTA.type
+    return when(discount) {
+        in Badge.STAR.price until Badge.TREE.price -> Badge.STAR.type
+        in Badge.TREE.price until Badge.SANTA.price -> Badge.TREE.type
+        in Badge.SANTA.price..MAX_ORDER_PRICE -> Badge.SANTA.type
         else -> ""
     }
 }

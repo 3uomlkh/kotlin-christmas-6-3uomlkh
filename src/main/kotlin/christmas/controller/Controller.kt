@@ -3,6 +3,7 @@ package christmas.controller
 import christmas.domain.Order
 import christmas.domain.allEvent
 import christmas.domain.checkGiftMenu
+import christmas.domain.discountAmount
 import christmas.domain.evenStart
 import christmas.domain.eventBadge
 import christmas.domain.totalPrice
@@ -51,8 +52,9 @@ class Controller(
 
         if (isEventApplicable(total)) {
            val eventResult = evenStart(menu,date,total)
-            println(allEvent(eventResult))
-            println(eventBadge(allEvent(eventResult)))
+            println("총혜택 금액 -" + allEvent(eventResult))
+            println("이벤트 배지 -" + eventBadge(allEvent(eventResult)))
+            println("할인 후 예상 결제 금액 -" + totalPrice(total,discountAmount(eventResult)))
         }
     }
 }

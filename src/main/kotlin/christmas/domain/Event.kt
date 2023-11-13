@@ -110,14 +110,21 @@ fun giftMenuEvent(total: Int): Int {
 
 fun allEvent(events: EventResult): Int {
     return events.christmas +
-    events.weekday +
-    events.weekend +
-    events.special +
-    events.gift
+            events.weekday +
+            events.weekend +
+            events.special +
+            events.gift
 }
 
-fun totalPrice(total: Int, discount: Int) {
+fun discountAmount(events: EventResult): Int {
+    return events.christmas +
+            events.weekday +
+            events.weekend +
+            events.special
+}
 
+fun totalPrice(total: Int, discount: Int): Int {
+    return total-discount
 }
 
 fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND

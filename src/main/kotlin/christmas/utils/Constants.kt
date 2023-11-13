@@ -9,6 +9,7 @@ object Constants {
     const val HUNDRED_TWENTY_THOUSAND = 120_000
     const val CHAMPAGNE_PRICE = 25_000
     const val EVENT_APPLICABLE_AMOUNT = 10_000
+    const val MAX_ORDER_PRICE = 1_195_000
 
     const val HYPHEN = "-"
     const val COMMA = ","
