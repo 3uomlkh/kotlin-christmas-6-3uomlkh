@@ -1,8 +1,8 @@
 package christmas.controller
 
 import christmas.domain.Order
+import christmas.domain.checkGiftMenu
 import christmas.domain.evenStart
-import christmas.domain.giftMenu
 import christmas.domain.totalPrice
 import christmas.utils.Constants.EVENT_APPLICABLE_AMOUNT
 import christmas.utils.Constants.NO_EVENT
@@ -45,13 +45,11 @@ class Controller(
         outputView.printMenu(menu)
         val total = totalPrice(menu)
         outputView.printPreDiscountTotal(total)
-        outputView.printGiftMenu(giftMenu(total))
+        outputView.printGiftMenu(checkGiftMenu(total))
 
         if (isEventApplicable(total)) {
-            println("이벤트시작")
             evenStart(menu,date,total)
         }
-
     }
 }
 

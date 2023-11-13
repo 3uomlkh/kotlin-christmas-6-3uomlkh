@@ -1,50 +1,53 @@
 package christmas.domain
 
+import christmas.utils.Constants
 import christmas.utils.Constants.WEEK
-
 
 enum class Event(val discount: String, val price: Int) {
     CHRISTMAS_D_DAY("크리스마스 디데이 할인", 100),
     WEEKDAYS("평일 할인", 2_023),
     WEEKEND("주말 할인", 2_023),
     SUNDAY("특별 할인", 1_000),
+    GIFT("증정 이벤트", 25_000),
 }
 
-fun evenStart(menu: List<Order>, date: Int, total: Int) {
+fun evenStart(menu: List<Order>, date: Int, total: Int): EventResult {
     if (christmasDdayCheck(date)) { // 26 ~ 31일
-        afterChristmas(menu, date, total)
+        return afterChristmas(menu, date, total)
     }
-    if(!christmasDdayCheck(date)) { // 1 ~ 25일
-        inRangeChristmas(menu, date, total)
-    }
+    return inRangeChristmas(menu, date, total)
 }
 
-fun inRangeChristmas(menu: List<Order>, date: Int, total: Int) {
+fun inRangeChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
     // 크리스마스 디데이 할인과 그 외 할인 적용
     val christmas = christmasDiscount(date)
+    val gift = giftMenuEvent(total)
 
-    val original = EventResult(christmas = christmas)
+    val original = EventResult(christmas = christmas, gift = gift)
     var new = EventResult()
 
     when (dayOfTheWeek(date)) {
         Event.WEEKDAYS.discount -> new = original.copy(weekday = weekDaysDiscount(menu))
         Event.WEEKEND.discount -> new = original.copy(weekend = weekEndDiscount(menu))
-        Event.SUNDAY.discount -> println("특별 할인")
+        Event.SUNDAY.discount -> new = original.copy(weekday = weekDaysDiscount(menu), special = specialDiscount())
     }
+    if(date == 25) {
+        new = original.copy(weekday = weekDaysDiscount(menu), special = specialDiscount())
+    }
+    return new
 }
 
-fun afterChristmas(menu: List<Order>, date: Int, total: Int) {
+fun afterChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
     // 그 외 할인만 적용
-    val original = EventResult()
+    val gift = giftMenuEvent(total)
+    val original = EventResult(gift = gift)
     var new = EventResult()
-
     when (dayOfTheWeek(date)) {
         Event.WEEKDAYS.discount -> new = original.copy(weekday = weekDaysDiscount(menu))
         Event.WEEKEND.discount -> new = original.copy(weekend = weekEndDiscount(menu))
-        Event.SUNDAY.discount -> println("특별 할인")
+        Event.SUNDAY.discount -> new = original.copy(weekday = weekDaysDiscount(menu), special = specialDiscount())
     }
-
-    println(new.toString())
+    return new
 }
 
 fun christmasDdayCheck(date: Int): Boolean {
@@ -93,3 +96,16 @@ fun weekEndDiscount(order: List<Order>): Int {
     }
     return discountPrice
 }
+
+fun specialDiscount(): Int {
+    return 1000
+}
+
+fun giftMenuEvent(total: Int): Int {
+    if(total >= Constants.HUNDRED_TWENTY_THOUSAND) {
+        return Event.GIFT.price
+    }
+    return 0
+}
+
+fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND

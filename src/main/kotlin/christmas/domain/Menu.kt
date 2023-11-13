@@ -40,5 +40,3 @@ fun totalPrice(order: List<Order>): Int {
     }
     return total
 }
-
-fun giftMenu(total: Int): Boolean = total >= HUNDRED_TWENTY_THOUSAND
