@@ -116,4 +116,8 @@ fun allEvent(events: EventResult): Int {
     events.gift
 }
 
+fun totalPrice(total: Int, discount: Int) {
+
+}
+
 fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND

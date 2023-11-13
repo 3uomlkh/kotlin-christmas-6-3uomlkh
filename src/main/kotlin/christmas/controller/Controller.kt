@@ -4,6 +4,7 @@ import christmas.domain.Order
 import christmas.domain.allEvent
 import christmas.domain.checkGiftMenu
 import christmas.domain.evenStart
+import christmas.domain.eventBadge
 import christmas.domain.totalPrice
 import christmas.utils.Constants.EVENT_APPLICABLE_AMOUNT
 import christmas.utils.Constants.NO_EVENT
@@ -49,7 +50,9 @@ class Controller(
         outputView.printGiftMenu(checkGiftMenu(total))
 
         if (isEventApplicable(total)) {
-            println(allEvent(evenStart(menu,date,total)))
+           val eventResult = evenStart(menu,date,total)
+            println(allEvent(eventResult))
+            println(eventBadge(allEvent(eventResult)))
         }
     }
 }

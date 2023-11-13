@@ -24,9 +24,7 @@ object Constants {
     const val BENEFIT_AMOUNT_TOTAL_MESSAGE = "<총혜택 금액>"
     const val AFTER_DISCOUNT_TOTAL_MESSAGE = "<할인 후 예상 결제 금액>"
     const val DECEMBER_EVENT_BADGE = "<${MONTH_TWELVE}월 이벤트 배지>"
-    const val EVENT_BADGE_STAR = "별"
-    const val EVENT_BADGE_TREE = "트리"
-    const val EVENT_BADGE_SANTA = "산타"
+
     const val NO_EVENT = "없음"
     const val NO_EVENT_AMOUNT = "0원"
 }
