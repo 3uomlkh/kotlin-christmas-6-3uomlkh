@@ -1,6 +1,7 @@
 package christmas.controller
 
 import christmas.domain.Order
+import christmas.domain.evenStart
 import christmas.domain.giftMenu
 import christmas.domain.totalPrice
 import christmas.utils.Constants.EVENT_APPLICABLE_AMOUNT
@@ -17,6 +18,7 @@ class Controller(
 ) {
     fun start() {
         var date : Int
+        var day : String
         var menu : List<Order>
 
         outputView.printAskDate()
@@ -45,7 +47,11 @@ class Controller(
         outputView.printPreDiscountTotal(total)
         outputView.printGiftMenu(giftMenu(total))
 
-        isEventApplicable(total)
+        if (isEventApplicable(total)) {
+            println("이벤트시작")
+            evenStart(menu,date,total)
+        }
+
     }
 }
 
@@ -56,7 +62,10 @@ fun isEventApplicable(total: Int): Boolean {
         outputView.printBenefitAmountTotal(NO_EVENT_AMOUNT)
         outputView.printAfterDiscountTotal(total)
         outputView.printEventBadge(NO_EVENT)
+        return false
     }
     return true
 }
+
+
 
