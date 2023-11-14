@@ -24,7 +24,7 @@ fun menuValidators(order: String): List<Order> {
     var total = 0
     val parseOrder = validateMenuFormComma(order)
     validateMenuDuplicate(parseOrder)
-    val result = validateMenuFormHypen(parseOrder)
+    val result = validateMenuFormHyphen(parseOrder)
     for (index in result.indices) {
         val menu = result[index].menu
         val quantity = result[index].quantity
@@ -42,15 +42,6 @@ fun validateNumber(date: String) = require(date.toIntOrNull() is Int) {Validator
 
 fun validateRange(date: String) = require(date.toInt() in Validators.DATE.first..Validators.DATE.last) {Validators.DATE.message}
 
-fun validateMenuSelection(menu: String) {
-    val allDishes: List<String> = enumValues<Menu>().map { it.dish }
-    require(allDishes.contains(menu)) {Validators.MENU.message}
-}
-
-fun validateMenuNumber(quantity: String) = require(quantity.toIntOrNull() is Int) {Validators.DATE.message}
-
-fun validateMenuQuantityRange(quantity: String) = require(quantity.toInt() in Validators.MENU.first..Validators.MENU.last) {Validators.MENU.message}
-
 fun validateMenuDuplicate(order: List<String>) {
     val result = menuParser(order)
     require(result.size == result.distinct().size) {Validators.MENU.message}
@@ -61,12 +52,21 @@ fun validateMenuFormComma(order: String): List<String> {
     return inputParser(order)
 }
 
-fun validateMenuFormHypen(order: List<String>): List<Order> {
+fun validateMenuFormHyphen(order: List<String>): List<Order> {
     for (menu in order) {
-        require(isValidMenuFormatHypen(menu)) {Validators.MENU.message}
+        require(isValidMenuFormatHyphen(menu)) {Validators.MENU.message}
     }
     return menuAndQuantityParser(order)
 }
+
+fun validateMenuSelection(menu: String) {
+    val allDishes: List<String> = enumValues<Menu>().map { it.dish }
+    require(allDishes.contains(menu)) {Validators.MENU.message}
+}
+
+fun validateMenuNumber(quantity: String) = require(quantity.toIntOrNull() is Int) {Validators.DATE.message}
+
+fun validateMenuQuantityRange(quantity: String) = require(quantity.toInt() in Validators.MENU.first..Validators.MENU.last) {Validators.MENU.message}
 
 fun validateOrderDrink(order: List<String>) {
     val result = menuParser(order)
@@ -81,9 +81,9 @@ fun validateOrderDrink(order: List<String>) {
             || result.contains(Menu.ICE_CREAM.dish)) {Validators.DRINK.message}
 }
 
-fun validateOrderTotal(total: Int) = require(total <= Validators.TOTAL.last) { Validators.TOTAL.message }
+fun validateOrderTotal(quantity: Int) = require(quantity in Validators.TOTAL.first..Validators.TOTAL.last) { Validators.TOTAL.message }
 
-fun isValidMenuFormatHypen(input: String): Boolean {
+fun isValidMenuFormatHyphen(input: String): Boolean {
     val regex = Regex("^[^,]+-\\d+$")
     return regex.matches(input)
 }
