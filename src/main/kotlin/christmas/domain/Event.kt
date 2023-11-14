@@ -17,15 +17,14 @@ class EventProcessing() {
 
     private var events: MutableList<Int> = mutableListOf(0,0,0,0,0)
 
-    fun evenStart(menu: List<Order>, date: Int, total: Int): EventResult {
+    fun start(menu: List<Order>, date: Int, total: Int): EventResult {
         if (christmasDdayCheck(date)) {
             return afterChristmas(menu, date, total)
         }
         return inRangeChristmas(menu, date, total)
-
     }
 
-    fun inRangeChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
+    private fun inRangeChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
         // 크리스마스 디데이 할인과 그 외 할인 적용
         val christmas = christmasDiscount(date)
         val gift = giftMenuEvent(total)
@@ -48,7 +47,7 @@ class EventProcessing() {
         return EventResult(events)
     }
 
-    fun afterChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
+    private fun afterChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
         // 그 외 할인만 적용
         val gift = giftMenuEvent(total)
         events[4] = gift
@@ -63,11 +62,11 @@ class EventProcessing() {
         return EventResult(events)
     }
 
-    fun christmasDdayCheck(date: Int): Boolean {
+    private fun christmasDdayCheck(date: Int): Boolean {
         return date in 26..31
     }
 
-    fun dayOfTheWeek(date: Int): String {
+    private fun dayOfTheWeek(date: Int): String {
         return when (date % WEEK) {
             in 4..6 -> Event.WEEKDAYS.discount
             0 -> Event.WEEKDAYS.discount
@@ -77,11 +76,11 @@ class EventProcessing() {
         }
     }
 
-    fun christmasDiscount(date: Int): Int {
+    private fun christmasDiscount(date: Int): Int {
         return 900 + Event.CHRISTMAS_D_DAY.price * date
     }
 
-    fun weekDaysDiscount(order: List<Order>): Int {
+    private fun weekDaysDiscount(order: List<Order>): Int {
         var discountPrice = 0
         for (index in order.indices) {
             val menu = order[index].menu
@@ -94,7 +93,7 @@ class EventProcessing() {
         return discountPrice
     }
 
-    fun weekEndDiscount(order: List<Order>): Int {
+    private fun weekEndDiscount(order: List<Order>): Int {
         var discountPrice = 0
         for (index in order.indices) {
             val menu = order[index].menu
@@ -110,23 +109,22 @@ class EventProcessing() {
         return discountPrice
     }
 
-    fun specialDiscount(): Int {
+    private fun specialDiscount(): Int {
         return 1000
     }
 
-    fun giftMenuEvent(total: Int): Int {
+    private fun giftMenuEvent(total: Int): Int {
         if(total >= Constants.HUNDRED_TWENTY_THOUSAND) {
             return Event.GIFT.price
         }
         return 0
     }
 
-    fun allEvent(result: EventResult): Int = result.events.dropLast(1).sum()
-
-    fun discountAmount(result: EventResult): Int = result.events.sum()
-
-    fun totalPrice(total: Int, discount: Int): Int = total-discount
 }
+fun allEvent(result: EventResult): Int = result.events.sum()
 
+fun discountAmount(result: EventResult): Int = result.events.dropLast(1).sum()
+
+fun totalPrice(total: Int, discount: Int): Int = total-discount
 
 fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND

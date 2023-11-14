@@ -27,5 +27,6 @@ object Constants {
     const val DECEMBER_EVENT_BADGE = "<${MONTH_TWELVE}월 이벤트 배지>"
 
     const val NO_EVENT = "없음"
-    const val NO_EVENT_AMOUNT = "0원"
+    const val NO_BENEFIT = 0
+    const val EVENT_AMOUNT = "%s원"
 }

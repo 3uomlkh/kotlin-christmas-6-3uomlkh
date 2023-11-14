@@ -1,5 +1,7 @@
 package christmas.view
 
+import christmas.domain.Event
+import christmas.domain.EventResult
 import christmas.domain.Menu
 import christmas.domain.Order
 import christmas.utils.Constants.AFTER_DISCOUNT_TOTAL_MESSAGE
@@ -7,6 +9,7 @@ import christmas.utils.Constants.BENEFIT_AMOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_DETAILS_MESSAGE
 import christmas.utils.Constants.DATE_MESSAGE
 import christmas.utils.Constants.DECEMBER_EVENT_BADGE
+import christmas.utils.Constants.EVENT_AMOUNT
 import christmas.utils.Constants.GIFT_MENU_MESSAGE
 import christmas.utils.Constants.NO_EVENT
 import christmas.utils.Constants.ORDER_MENU_MESSAGE
@@ -39,7 +42,7 @@ class OutputView {
 
     fun printPreDiscountTotal(total: Int) {
         println(PRE_DISCOUNT_TOTAL_MESSAGE)
-        println(numberFormatting(total))
+        println(String.format(EVENT_AMOUNT,numberFormatting(total)))
         println()
     }
 
@@ -47,27 +50,43 @@ class OutputView {
         println(GIFT_MENU_MESSAGE)
         if(gift) {
             println("${Menu.CHAMPAGNE.dish} 1개")
+            println()
             return
         }
         println(NO_EVENT)
         println()
     }
 
-    fun printBenefitDetails(input: String) {
+    fun printBenefitDetails(result: EventResult) {
         println(BENEFIT_DETAILS_MESSAGE)
-        println(input)
+        for (event in Event.values()) {
+            if(result.events[event.ordinal] > 0) {
+                println("${event.discount}: -${numberFormatting(result.events[event.ordinal])}원")
+            }
+        }
         println()
     }
 
-    fun printBenefitAmountTotal(input: String) {
-        println(BENEFIT_AMOUNT_TOTAL_MESSAGE)
-        println(input)
+    fun printNoBenefit() {
+        println(BENEFIT_DETAILS_MESSAGE)
+        println(NO_EVENT)
         println()
     }
+
+    fun printBenefitAmountTotal(result: Int) {
+        println(BENEFIT_AMOUNT_TOTAL_MESSAGE)
+        if(result > 0) {
+            println(String.format(EVENT_AMOUNT, numberFormatting(result)))
+            println()
+            return
+        }
+        println(String.format(EVENT_AMOUNT, result))
+    }
+
 
     fun printAfterDiscountTotal(total: Int) {
         println(AFTER_DISCOUNT_TOTAL_MESSAGE)
-        println(numberFormatting(total))
+        println(String.format(EVENT_AMOUNT,numberFormatting(total)))
         println()
     }
 
