@@ -1,7 +1,9 @@
 package christmas
 
+import christmas.domain.EventProcessing
 import christmas.utils.validateNumber
 import christmas.utils.validateRange
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -25,5 +27,17 @@ class DateTest {
         assertThrows<IllegalArgumentException> {
             validateRange(input)
         }
+    }
+
+    @Test
+    @DisplayName("날짜에 따라 평일, 주말, 특별 할인으로 분류한다.")
+    fun classifyDatesTest() {
+        // given
+        val eventProcessing = EventProcessing()
+
+        // when & then
+        assertThat(eventProcessing.dayOfTheWeek(4)).isEqualTo("평일 할인")
+        assertThat(eventProcessing.dayOfTheWeek(9)).isEqualTo("주말 할인")
+        assertThat(eventProcessing.dayOfTheWeek(10)).isEqualTo("특별 할인")
     }
 }
