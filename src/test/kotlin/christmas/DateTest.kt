@@ -30,7 +30,7 @@ class DateTest {
     }
 
     @Test
-    @DisplayName("날짜에 따라 평일, 주말, 특별 할인으로 분류한다.")
+    @DisplayName("날짜에 따라 평일, 주말, 특별 할인으로 분류되는지 테스트")
     fun classifyDatesTest() {
         // given
         val eventProcessing = EventProcessing()

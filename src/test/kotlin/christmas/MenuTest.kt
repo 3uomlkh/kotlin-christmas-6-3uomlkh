@@ -1,5 +1,9 @@
 package christmas
 
+import christmas.domain.EventProcessing
+import christmas.domain.Order
+import christmas.utils.Parser.inputParser
+import christmas.utils.Parser.menuAndQuantityParser
 import christmas.utils.validateMenuDuplicate
 import christmas.utils.validateMenuFormComma
 import christmas.utils.validateMenuFormHyphen
@@ -8,6 +12,8 @@ import christmas.utils.validateMenuQuantityRange
 import christmas.utils.validateMenuSelection
 import christmas.utils.validateOrderDrink
 import christmas.utils.validateOrderTotal
+import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -99,5 +105,31 @@ class MenuTest {
         assertThrows<IllegalArgumentException> {
             validateOrderTotal(input)
         }
+    }
+
+    @Test
+    @DisplayName("메뉴가 콤마(,)를 기준으로 나눠지는지 테스트")
+    fun menuParsingByCommaTest() {
+        // given
+        val input = "바비큐립-1,초코케이크-2,제로콜라-1"
+
+        // when
+        val result = inputParser(input)
+
+        // then
+        assertThat(result).isEqualTo(listOf("바비큐립-1","초코케이크-2","제로콜라-1"))
+    }
+
+    @Test
+    @DisplayName("메뉴와 개수가 하이픈(-)을 기준으로 나눠지는지 테스트")
+    fun menuParsingByHyphenTest() {
+        // given
+        val input = listOf("바비큐립-1","초코케이크-2")
+
+        // when
+        val result = menuAndQuantityParser(input)
+
+        // then
+        assertThat(result).isEqualTo(listOf(Order("바비큐립","1"), Order("초코케이크","2")))
     }
 }
