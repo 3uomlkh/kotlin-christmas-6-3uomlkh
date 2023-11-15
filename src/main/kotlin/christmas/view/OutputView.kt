@@ -1,9 +1,9 @@
 package christmas.view
 
 import christmas.domain.Event
-import christmas.domain.EventResult
+import christmas.data.EventResult
 import christmas.domain.Menu
-import christmas.domain.Order
+import christmas.data.Order
 import christmas.utils.Constants.AFTER_DISCOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_AMOUNT_TOTAL_MESSAGE
 import christmas.utils.Constants.BENEFIT_DETAILS_MESSAGE

@@ -1,5 +1,7 @@
 package christmas.domain
 
+import christmas.data.EventResult
+import christmas.data.Order
 import christmas.utils.Constants
 import christmas.utils.Constants.CHRISTMAS
 import christmas.utils.Constants.D_DAY_DISCOUNT_MIN

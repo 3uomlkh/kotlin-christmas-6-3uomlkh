@@ -1,7 +1,7 @@
 package christmas
 
 import christmas.domain.EventProcessing
-import christmas.domain.Order
+import christmas.data.Order
 import christmas.domain.checkGiftMenu
 import christmas.domain.eventBadge
 import org.assertj.core.api.Assertions

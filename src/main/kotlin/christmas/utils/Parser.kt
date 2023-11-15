@@ -1,6 +1,6 @@
 package christmas.utils
 
-import christmas.domain.Order
+import christmas.data.Order
 import christmas.utils.Constants.COMMA
 import christmas.utils.Constants.HYPHEN
 

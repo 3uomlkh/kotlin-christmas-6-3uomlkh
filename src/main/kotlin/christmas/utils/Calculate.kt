@@ -1,8 +1,8 @@
 package christmas.utils
 
-import christmas.domain.EventResult
+import christmas.data.EventResult
 import christmas.domain.Menu
-import christmas.domain.Order
+import christmas.data.Order
 
 object Calculate {
     fun totalAmountBeforeDiscount(order: List<Order>): Int {

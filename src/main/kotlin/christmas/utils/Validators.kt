@@ -1,7 +1,7 @@
 package christmas.utils
 
 import christmas.domain.Menu
-import christmas.domain.Order
+import christmas.data.Order
 import christmas.utils.Constants.COMMA
 import christmas.utils.Constants.PATTERN
 import christmas.utils.Parser.inputParser

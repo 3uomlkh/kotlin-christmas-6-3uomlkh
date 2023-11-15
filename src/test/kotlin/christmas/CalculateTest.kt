@@ -3,8 +3,8 @@ package christmas
 import christmas.utils.Calculate.totalAmountAfterDiscount
 import christmas.utils.Calculate.totalAmountBeforeDiscount
 import christmas.utils.Calculate.totalBenefitAmount
-import christmas.domain.EventResult
-import christmas.domain.Order
+import christmas.data.EventResult
+import christmas.data.Order
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

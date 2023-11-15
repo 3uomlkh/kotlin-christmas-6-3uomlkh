@@ -5,8 +5,8 @@ import christmas.utils.Calculate.totalAmountAfterDiscount
 import christmas.utils.Calculate.totalAmountBeforeDiscount
 import christmas.utils.Calculate.totalBenefitAmount
 import christmas.domain.EventProcessing
-import christmas.domain.EventResult
-import christmas.domain.Order
+import christmas.data.EventResult
+import christmas.data.Order
 import christmas.domain.checkGiftMenu
 import christmas.domain.eventBadge
 import christmas.utils.Constants.EVENT_APPLICABLE_AMOUNT
