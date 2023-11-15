@@ -1,7 +1,5 @@
 package christmas.domain
 
-import christmas.utils.Constants.HUNDRED_TWENTY_THOUSAND
-import java.awt.SystemColor.menu
 
 enum class Menu(val type: String, val dish: String, val price: Int) {
     SOUP("애피타이저","양송이수프",6_000),
@@ -18,25 +16,3 @@ enum class Menu(val type: String, val dish: String, val price: Int) {
     CHAMPAGNE("음료", "샴페인", 25_000)
 }
 
-fun totalPrice(order: List<Order>): Int {
-    var total = 0
-    for (index in order.indices) {
-        var menu = order[index].menu
-        var quantity = order[index].quantity.toInt()
-        when(menu) {
-            Menu.SOUP.dish -> total += Menu.SOUP.price * quantity
-            Menu.TAPAS.dish -> total += Menu.TAPAS.price * quantity
-            Menu.SALAD.dish -> total += Menu.SALAD.price * quantity
-            Menu.T_BONE.dish -> total += Menu.T_BONE.price * quantity
-            Menu.BBQ.dish -> total += Menu.BBQ.price * quantity
-            Menu.SEAFOOD_PASTA.dish -> total += Menu.SEAFOOD_PASTA.price * quantity
-            Menu.CHRISTMAS_PASTA.dish -> total += Menu.CHRISTMAS_PASTA.price * quantity
-            Menu.CHOCOLATE_CAKE.dish -> total += Menu.CHOCOLATE_CAKE.price * quantity
-            Menu.ICE_CREAM.dish -> total += Menu.ICE_CREAM.price * quantity
-            Menu.ZERO_COKE.dish -> total += Menu.ZERO_COKE.price * quantity
-            Menu.RED_WINE.dish -> total += Menu.RED_WINE.price * quantity
-            Menu.CHAMPAGNE.dish -> total += Menu.CHAMPAGNE.price * quantity
-        }
-    }
-    return total
-}

@@ -3,7 +3,8 @@ package christmas
 import christmas.domain.EventResult
 import christmas.domain.Order
 import christmas.domain.allEvent
-import christmas.domain.totalPrice
+import christmas.domain.calculateTotalAmountAfterDiscount
+import christmas.domain.calculateTotalAmountBeforeDiscount
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -16,7 +17,7 @@ class CalculateTest {
         val input = listOf(Order("바비큐립","1"), Order("초코케이크","2"))
 
         // when
-        val result = totalPrice(input)
+        val result = calculateTotalAmountBeforeDiscount(input)
 
         // then
         Assertions.assertThat(result).isEqualTo(84000)
@@ -43,7 +44,7 @@ class CalculateTest {
         val discount = 4123
 
         // when
-        val result = totalPrice(total,discount)
+        val result = calculateTotalAmountAfterDiscount(total,discount)
 
         // then
         Assertions.assertThat(result).isEqualTo(71877)

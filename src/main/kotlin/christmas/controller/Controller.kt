@@ -1,13 +1,14 @@
 package christmas.controller
 
+import christmas.domain.Calculate.discountAmount
+import christmas.domain.Calculate.totalAmountAfterDiscount
+import christmas.domain.Calculate.totalAmountBeforeDiscount
+import christmas.domain.Calculate.totalBenefitAmount
 import christmas.domain.EventProcessing
 import christmas.domain.EventResult
 import christmas.domain.Order
-import christmas.domain.allEvent
 import christmas.domain.checkGiftMenu
-import christmas.domain.discountAmount
 import christmas.domain.eventBadge
-import christmas.domain.totalPrice
 import christmas.utils.Constants.EVENT_APPLICABLE_AMOUNT
 import christmas.utils.Constants.NO_BENEFIT
 import christmas.utils.Constants.NO_EVENT
@@ -79,14 +80,13 @@ class Controller(
         }
     }
 
-
     private fun getEventReult() {
         if (isEventApplicable()) {
             result = eventProcessing.start(menu,date,total)
-            val totalAmount = allEvent(result)
+            val totalAmount = totalBenefitAmount(result)
             outputView.printBenefitDetails(result)
             outputView.printBenefitAmountTotal(totalAmount)
-            outputView.printAfterDiscountTotal(totalPrice(total,discountAmount(result)))
+            outputView.printAfterDiscountTotal(totalAmountAfterDiscount(total,discountAmount(result)))
             outputView.printEventBadge(eventBadge(totalAmount))
         }
     }
@@ -108,9 +108,8 @@ class Controller(
     }
 
     private fun printBeforeDiscountAmount() {
-        total = totalPrice(menu)
+        total = totalAmountBeforeDiscount(menu)
         outputView.printPreDiscountTotal(total)
-
     }
 
     private fun printGiftMenu() {
@@ -122,7 +121,7 @@ class Controller(
     }
 
     private fun printBenefitAmount() {
-        val totalAmount = allEvent(result)
+        val totalAmount = totalBenefitAmount(result)
         outputView.printBenefitAmountTotal(totalAmount)
     }
 }

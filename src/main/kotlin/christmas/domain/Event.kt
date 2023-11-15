@@ -13,10 +13,6 @@ enum class Event(
     GIFT("증정 이벤트", 25_000),
 }
 
-fun allEvent(result: EventResult): Int = result.events.sum()
 
-fun discountAmount(result: EventResult): Int = result.events.dropLast(1).sum()
-
-fun totalPrice(total: Int, discount: Int): Int = total-discount
 
 fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND
