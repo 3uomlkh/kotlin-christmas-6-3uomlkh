@@ -20,7 +20,7 @@ object Parser {
 
     fun menuParser(menus: List<String>): List<String> {
         val result = menus.flatMap {
-            val (menu) = it.replace(" ","").split(HYPHEN)
+            val (menu) = it.split(HYPHEN)
             listOf(menu)
         }
         return result
