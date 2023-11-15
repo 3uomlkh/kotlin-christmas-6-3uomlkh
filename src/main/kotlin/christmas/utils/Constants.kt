@@ -1,12 +1,12 @@
 package christmas.utils
 
 object Constants {
-    const val YEAR = 2_023
     const val WEEK = 7
     const val CHRISTMAS = 25
-    const val MONTH_TWELVE = 12
-    const val THOUSAND = 1_000
-    const val HUNDRED_TWENTY_THOUSAND = 120_000
+    private const val MONTH_TWELVE = 12
+    const val SPECIAL_DISCOUNT_AMOUNT = 1_000
+    const val D_DAY_DISCOUNT_MIN = 900
+    const val GIFT_APPLICABLE_AMOUNT = 120_000
     const val EVENT_APPLICABLE_AMOUNT = 10_000
     const val MAX_ORDER_PRICE = 1_195_000
 

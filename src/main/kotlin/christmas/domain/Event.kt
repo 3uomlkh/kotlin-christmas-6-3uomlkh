@@ -1,6 +1,6 @@
 package christmas.domain
 
-import christmas.utils.Constants
+import christmas.utils.Constants.GIFT_APPLICABLE_AMOUNT
 
 enum class Event(
     val discount: String,
@@ -13,6 +13,4 @@ enum class Event(
     GIFT("증정 이벤트", 25_000),
 }
 
-
-
-fun checkGiftMenu(total: Int): Boolean = total >= Constants.HUNDRED_TWENTY_THOUSAND
+fun checkGiftMenu(total: Int): Boolean = total >= GIFT_APPLICABLE_AMOUNT
