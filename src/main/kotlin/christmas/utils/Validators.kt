@@ -48,7 +48,9 @@ fun validateMenuDuplicate(order: List<String>) {
 }
 
 fun validateMenuFormComma(order: String): List<String> {
-    require(order.contains(COMMA)) {Validators.MENU.message}
+    if(inputParser(order).size > 1) {
+        require(order.contains(COMMA)) {Validators.MENU.message}
+    }
     return inputParser(order)
 }
 

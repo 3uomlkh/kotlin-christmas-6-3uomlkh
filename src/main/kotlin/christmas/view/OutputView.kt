@@ -81,6 +81,7 @@ class OutputView {
             return
         }
         println(String.format(EVENT_AMOUNT, result))
+        println()
     }
 
 

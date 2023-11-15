@@ -11,7 +11,7 @@ object Parser {
 
     fun menuAndQuantityParser(menus: List<String>): List<Order> {
         val result = menus.map {
-            val (menu, quantity) = it.split(HYPHEN)
+            val (menu, quantity) = it.trim().split(HYPHEN)
             Order(menu, quantity)
         }
         return result
