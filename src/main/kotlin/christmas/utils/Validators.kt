@@ -23,24 +23,23 @@ fun dateValidators(date: String): Int {
 
 fun menuValidators(order: String): List<Order> {
     var total = 0
-    val result = validateMenuForm(order)
+    val parseOrder = validateMenuFormComma(order)
+    val result = validateMenuDetail(parseOrder)
     for (index in result.indices) {
-        val menu = result[index].menu
         val quantity = result[index].quantity
-        validateMenuSelection(menu)
+        validateMenuSelection(result[index].menu)
         validateMenuNumber(quantity)
         validateMenuQuantityRange(quantity)
         total += quantity.toInt()
     }
+    validateOrderDrink(parseOrder)
     validateOrderTotal(total)
     return result
 }
 
-fun validateMenuForm(order: String): List<Order> {
-    val parseOrder = validateMenuFormComma(order)
-    validateOrderDrink(parseOrder)
-    validateMenuDuplicate(parseOrder)
-    return validateMenuFormHyphen(parseOrder)
+fun validateMenuDetail(order: List<String>): List<Order> {
+    validateMenuDuplicate(order)
+    return validateMenuFormHyphen(order)
 }
 
 fun validateNumber(date: String) = require(date.toIntOrNull() is Int) {Validators.DATE.message}
