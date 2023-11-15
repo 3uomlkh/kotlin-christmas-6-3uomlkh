@@ -18,7 +18,7 @@ class EventProcessing {
         return inRangeChristmas(menu, date, total)
     }
 
-    fun inRangeChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
+    private fun inRangeChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
         christmasEvent(menu, date)
 
         events[XMAS] = christmasDiscount(date)
@@ -34,14 +34,14 @@ class EventProcessing {
         return EventResult(events)
     }
 
-    fun christmasEvent(menu: List<Order>, date: Int) {
+    private fun christmasEvent(menu: List<Order>, date: Int) {
         if (date == CHRISTMAS) {
             events[WEEKDAY] = weekDayDiscount(menu)
             events[SPECIAL] = SPECIAL_DISCOUNT_AMOUNT
         }
     }
 
-    fun afterChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
+    private fun afterChristmas(menu: List<Order>, date: Int, total: Int): EventResult {
         val gift = giftMenuEvent(total)
         events[GIFT] = gift
         when (dayOfTheWeek(date)) {

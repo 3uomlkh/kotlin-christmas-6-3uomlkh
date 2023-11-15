@@ -34,7 +34,7 @@ class OutputView {
 
     fun printMenu(menu: List<Order>) {
         println(ORDER_MENU_MESSAGE)
-        for(index in menu.indices) {
+        for (index in menu.indices) {
             println("${menu[index].menu} ${menu[index].quantity}개")
         }
         println()
@@ -48,7 +48,7 @@ class OutputView {
 
     fun printGiftMenu(gift: Boolean) {
         println(GIFT_MENU_MESSAGE)
-        if(gift) {
+        if (gift) {
             println("${Menu.CHAMPAGNE.dish} 1개")
             println()
             return
@@ -60,7 +60,7 @@ class OutputView {
     fun printBenefitDetails(result: EventResult) {
         println(BENEFIT_DETAILS_MESSAGE)
         for (event in Event.values()) {
-            if(result.events[event.ordinal] > 0) {
+            if (result.events[event.ordinal] > 0) {
                 println("${event.discount}: -${numberFormatting(result.events[event.ordinal])}원")
             }
         }
@@ -75,7 +75,7 @@ class OutputView {
 
     fun printBenefitAmountTotal(result: Int) {
         println(BENEFIT_AMOUNT_TOTAL_MESSAGE)
-        if(result > 0) {
+        if (result > 0) {
             println(String.format(EVENT_AMOUNT, numberFormatting(result)))
             println()
             return
@@ -83,7 +83,6 @@ class OutputView {
         println(String.format(EVENT_AMOUNT, result))
         println()
     }
-
 
     fun printAfterDiscountTotal(total: Int) {
         println(AFTER_DISCOUNT_TOTAL_MESSAGE)

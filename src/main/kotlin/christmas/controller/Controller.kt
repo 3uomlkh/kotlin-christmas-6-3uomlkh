@@ -22,24 +22,21 @@ class Controller(
     private val outputView: OutputView
 ) {
     private var date : Int = 0
-    private lateinit var menu : List<Order>
     private var total = 0
+    private var totalAmount = 0
+    private lateinit var menu : List<Order>
     private lateinit var result: EventResult
     private val eventProcessing = EventProcessing()
 
     fun start() {
-        promotionInit() // 프로모션 시작 - 날짜와 메뉴를 받는다.
+        promotionInit()
         eventPlanner()
     }
 
     private fun eventPlanner() {
-        // 할인 전 총 주문 금액
         printBeforeDiscountAmount()
-        // 증정메뉴
         printGiftMenu()
-        // 혜택 내역
         getEventReult()
-
     }
 
     private fun promotionInit() {
@@ -83,11 +80,10 @@ class Controller(
     private fun getEventReult() {
         if (isEventApplicable()) {
             result = eventProcessing.start(menu,date,total)
-            val totalAmount = totalBenefitAmount(result)
-            outputView.printBenefitDetails(result)
-            outputView.printBenefitAmountTotal(totalAmount)
-            outputView.printAfterDiscountTotal(totalAmountAfterDiscount(total,discountAmount(result)))
-            outputView.printEventBadge(eventBadge(totalAmount))
+            printBenefits()
+            printBenefitAmount()
+            printAfterDiscount()
+            printBadge()
         }
     }
 
@@ -112,18 +108,18 @@ class Controller(
         outputView.printPreDiscountTotal(total)
     }
 
-    private fun printGiftMenu() {
-        outputView.printGiftMenu(checkGiftMenu(total))
-    }
+    private fun printGiftMenu() = outputView.printGiftMenu(checkGiftMenu(total))
 
-    private fun printBenefits() {
-        outputView.printBenefitDetails(result)
-    }
+    private fun printBenefits() = outputView.printBenefitDetails(result)
 
     private fun printBenefitAmount() {
-        val totalAmount = totalBenefitAmount(result)
+        totalAmount = totalBenefitAmount(result)
         outputView.printBenefitAmountTotal(totalAmount)
     }
+
+    private fun printAfterDiscount() = outputView.printAfterDiscountTotal(totalAmountAfterDiscount(total,discountAmount(result)))
+
+    private fun printBadge() = outputView.printEventBadge(eventBadge(totalAmount))
 }
 
 
