@@ -7,12 +7,12 @@ object Constants {
     const val MONTH_TWELVE = 12
     const val THOUSAND = 1_000
     const val HUNDRED_TWENTY_THOUSAND = 120_000
-    const val CHAMPAGNE_PRICE = 25_000
     const val EVENT_APPLICABLE_AMOUNT = 10_000
     const val MAX_ORDER_PRICE = 1_195_000
 
     const val HYPHEN = "-"
     const val COMMA = ","
+    const val PATTERN = "^[^,]+-\\d+$"
 
     const val DATE_MESSAGE = "안녕하세요! 우테코 식당 ${MONTH_TWELVE}월 이벤트 플래너입니다.\n" +
             "${MONTH_TWELVE}월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"

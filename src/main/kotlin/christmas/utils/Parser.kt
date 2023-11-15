@@ -6,12 +6,13 @@ import christmas.utils.Constants.HYPHEN
 
 object Parser {
     fun inputParser(input: String): List<String> {
-        return input.split(COMMA)
+        val result = input.replace(" ","")
+        return result.split(COMMA)
     }
 
     fun menuAndQuantityParser(menus: List<String>): List<Order> {
         val result = menus.map {
-            val (menu, quantity) = it.trim().split(HYPHEN)
+            val (menu, quantity) = it.split(HYPHEN)
             Order(menu, quantity)
         }
         return result
@@ -19,7 +20,7 @@ object Parser {
 
     fun menuParser(menus: List<String>): List<String> {
         val result = menus.flatMap {
-            val (menu) = it.split(HYPHEN)
+            val (menu) = it.replace(" ","").split(HYPHEN)
             listOf(menu)
         }
         return result

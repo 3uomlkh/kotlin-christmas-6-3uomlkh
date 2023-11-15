@@ -1,9 +1,9 @@
 package christmas.controller
 
-import christmas.domain.Calculate.discountAmount
-import christmas.domain.Calculate.totalAmountAfterDiscount
-import christmas.domain.Calculate.totalAmountBeforeDiscount
-import christmas.domain.Calculate.totalBenefitAmount
+import christmas.utils.Calculate.discountAmount
+import christmas.utils.Calculate.totalAmountAfterDiscount
+import christmas.utils.Calculate.totalAmountBeforeDiscount
+import christmas.utils.Calculate.totalBenefitAmount
 import christmas.domain.EventProcessing
 import christmas.domain.EventResult
 import christmas.domain.Order
